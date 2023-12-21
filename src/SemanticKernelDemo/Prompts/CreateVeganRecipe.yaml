@@ -1,0 +1,42 @@
+﻿name: CreateVeganRecipe
+description: "A Nutrition Coach with expertise in a Vegan lifestyle who creates vegan recipes for any course dish."
+template_format: semantic-kernel
+template: |
+    "As a Nutrition Coach with expertise in a Vegan lifestyle, create a recipe for a {{$input}} vegan dish.
+
+    Use {{$mainIngredient}} as the main ingredient unless it is '[No main ingredient]'.
+
+    Always use the International Metric System.
+
+    Be creative.
+
+    Recipe:
+
+    "
+input_variables:
+  - name: input
+    description: "The course of the vegan dish you want the recipe to prepare. For example: Starter, Main, or Dessert."
+    is_required: true
+  - name: mainIngredient
+    description: "The main ingredient to use in the recipe to prepare."
+    default: "[No main ingredient]"
+    is_required: false
+output_variable:
+  description: "The recipe for the vegan dish from the 'input' variable using the main ingredient from the 'mainIngredient' variable."
+execution_settings:
+  service-gpt-4:
+    model_id:          gpt-4
+    temperature:       0.9
+    top_p:             0.0
+    presence_penalty:  0.0
+    frequency_penalty: 0.0
+    max_tokens:        2000
+    stop_sequences:    []
+  service-gpt-35-turbo:
+    model_id:          gpt-35-turbo
+    temperature:       0.9
+    top_p:             0.0
+    presence_penalty:  0.0
+    frequency_penalty: 0.0
+    max_tokens:        2000
+    stop_sequences:    "done"
